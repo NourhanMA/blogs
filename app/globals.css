@@ -31,3 +31,8 @@ body {
     text-wrap: balance;
   }
 }
+
+.full-page {
+  width: 100vw;
+  height: 100vh;
+}
