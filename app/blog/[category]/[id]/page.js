@@ -5,7 +5,7 @@ async function fetchData(category) {
     let apiUrl;
 
     switch (category) {
-      case "wall street journal":
+      case "wallstreetjournal":
         apiUrl =
           "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=b6ed45b332c846a5b7a2ce290208c729";
         break;
@@ -13,7 +13,7 @@ async function fetchData(category) {
         apiUrl =
           "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=b6ed45b332c846a5b7a2ce290208c729";
         break;
-      case "top business":
+      case "topbusiness":
         apiUrl =
           "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=b6ed45b332c846a5b7a2ce290208c729";
         break;
