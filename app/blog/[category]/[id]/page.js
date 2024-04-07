@@ -36,7 +36,9 @@ export default function Blog({ params }) {
         </div>
         <div className="mt-4 md:mt-0 md:ml-6 md:flex md:flex-col md:justify-center md:gap-6">
           <h1 className="text-gray-800 text-3xl font-semibold mb-2">{title}</h1>
-          <p className="text-gray-500 text-xl font-bold mb-4">{category}</p>
+          <p className="text-gray-500 text-xl font-bold mb-4">
+            {category.replace(/%20/g, " ")}
+          </p>
           <p className="text-gray-600 leading-relaxed mb-4">{description}</p>
         </div>
       </div>
