@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-
 import { useRouter } from "next/navigation";
+import formatDate from "./FormatDate";
 
 function SinglePost({ post }) {
   const router = useRouter();
@@ -19,7 +19,9 @@ function SinglePost({ post }) {
           <p className="text-black font-semibold text-xl"> {post.title} </p>
         </div>
         <div>
-          <p className="text-gray-400 font-normal text-sm">{post.pubDate}</p>
+          <p className="text-gray-400 font-normal text-sm">
+            {formatDate(post.pubDate)}
+          </p>
         </div>
 
         <div className="description">
