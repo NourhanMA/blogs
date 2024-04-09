@@ -1,4 +1,5 @@
-import blogs from "@/app/blogs/blogs";
+"use client";
+import blogs from "../../../../public/data.json";
 
 function formatTimestamp(timestamp) {
   const options = {
@@ -13,23 +14,16 @@ function formatTimestamp(timestamp) {
   const formattedDate = new Date(timestamp).toLocaleString("en-US", options);
   return formattedDate;
 }
-
 export default function Blog({ params }) {
   const { category, id } = params;
-  const {
-    title,
-    content,
-    description,
-    urlToImage,
-    publishedAt,
-    lastUpdatedAt,
-  } = blogs.find((blog) => blog.id === parseInt(id));
+  const { title, content, description, image, pubDate, updatedDate } =
+    blogs.find((blog) => blog.id === id);
   return (
     <div className="full-page mt-4 mb-4 max-w-6xl mx-auto px-8 py-6 bg-white shadow-lg rounded-lg overflow-hidden">
       <div className="mr-5 ml-5 mb-5 md:flex">
         <div className="md:flex-shrink-0">
           <img
-            src={urlToImage}
+            src={image}
             alt={title}
             className="md:w-64 h-auto object-cover object-center rounded-lg"
           />
@@ -45,11 +39,9 @@ export default function Blog({ params }) {
       <div className="mt-4 md:mt-0 md:ml-6">
         <p className="text-gray-600 leading-relaxed mb-4">{content}</p>
         <div className="flex justify-between text-sm">
+          <p className="text-gray-600">Created: {formatTimestamp(pubDate)}</p>
           <p className="text-gray-600">
-            Created: {formatTimestamp(publishedAt)}
-          </p>
-          <p className="text-gray-600">
-            Last Updated: {formatTimestamp(lastUpdatedAt)}
+            Last Updated: {formatTimestamp(updatedDate)}
           </p>
         </div>
       </div>
