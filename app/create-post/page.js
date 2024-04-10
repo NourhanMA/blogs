@@ -31,6 +31,12 @@ const createpost = () => {
         (this.updatedAt = updatedAt),
         (this.puplishedAt = puplishedAt);
     }
+    keywordsSlicer(str) {
+      var str = str.split(",");
+
+      this.keywords = str;
+      console.log(this.keywords);
+    }
   }
   var x;
   const [iscontent, setcontent] = useState(false);
@@ -99,8 +105,9 @@ const createpost = () => {
             if (x) {
               return 0;
             }
+            id = id + 1;
             const createdNewPost = new createdPost(
-              id++,
+              id,
               values.blogName,
               values.category,
               values.keywords,
@@ -109,9 +116,10 @@ const createpost = () => {
               getDate(),
               getDate()
             );
-            console.log(createdNewPost);
+            // console.log(keywords);
+            createdNewPost.keywordsSlicer(values.keywords);
             localStorage.setItem("newPost", JSON.stringify(createdNewPost));
-            console.log(localStorage.getItem("newPost"));
+            // console.log(localStorage.getItem("newPost"));
           }}
         >
           {({ isSubmitting }) => (
