@@ -6,6 +6,9 @@
   .input-fields{
     @apply flex flex-col
   }
+  .error{
+    @apply text-red-600
+  }
 }
 
 :root {

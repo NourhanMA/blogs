@@ -9,23 +9,46 @@ function getDate() {
   const date = today.getDate();
   return `${year}-${month}-${date}`;
 }
-
+var id = 30;
 const createpost = () => {
+  class createdPost {
+    constructor(
+      id,
+      title,
+      category,
+      keywords,
+      description,
+      content,
+      updatedAt,
+      puplishedAt
+    ) {
+      (this.id = id),
+        (this.title = title),
+        (this.category = category),
+        (this.keywords = keywords),
+        (this.description = description),
+        (this.content = content),
+        (this.updatedAt = updatedAt),
+        (this.puplishedAt = puplishedAt);
+    }
+  }
   var x;
-  const [isSubmitting, setSubmitting] = useState(false);
   const [iscontent, setcontent] = useState(false);
   const [isdescription, setddescription] = useState(false);
   const [displaycontent, setdisplaycontent] = useState(false);
   const [displaydescription, setdisplaydescription] = useState(false);
+  const [contentText, setcontenttext] = useState("");
+  const [descriptionText, setdescriptionText] = useState("");
 
-  function checkExist(name) {
+  function checkExist(name, e) {
     if (name === "content") {
       setcontent(true);
+      setcontenttext(e);
       setdisplaycontent(false);
-      console.log(iscontent);
       return 0;
     } else {
       setddescription(true);
+      setdescriptionText(e);
       setdisplaydescription(false);
       return 0;
     }
@@ -76,8 +99,19 @@ const createpost = () => {
             if (x) {
               return 0;
             }
-            console.log(iscontent);
-            console.log(values);
+            const createdNewPost = new createdPost(
+              id++,
+              values.blogName,
+              values.category,
+              values.keywords,
+              descriptionText,
+              contentText,
+              getDate(),
+              getDate()
+            );
+            console.log(createdNewPost);
+            localStorage.setItem("newPost", JSON.stringify(createdNewPost));
+            console.log(localStorage.getItem("newPost"));
           }}
         >
           {({ isSubmitting }) => (
@@ -93,7 +127,11 @@ const createpost = () => {
                       placeholder="Blog Name"
                       className="mr-1 p-1"
                     />
-                    <ErrorMessage name="blogName" component="div" />
+                    <ErrorMessage
+                      className="error"
+                      name="blogName"
+                      component="div"
+                    />
                   </div>
 
                   <div className="input-fields w-1/2 m-0">
@@ -109,7 +147,11 @@ const createpost = () => {
                       placeholder="Blog keywords"
                       className="mr-1 p-1"
                     />
-                    <ErrorMessage name="keywords" component="div" />
+                    <ErrorMessage
+                      className="error"
+                      name="keywords"
+                      component="div"
+                    />
                   </div>
                 </div>
                 <div className="flex w-full justify-between">
@@ -123,7 +165,11 @@ const createpost = () => {
                       placeholder="Blog brief"
                       className="mr-1 p-1"
                     />
-                    <ErrorMessage name="category" component="div" />
+                    <ErrorMessage
+                      className="error"
+                      name="category"
+                      component="div"
+                    />
                   </div>
 
                   <div className="input-fields w-1/2 m-0">
@@ -136,7 +182,11 @@ const createpost = () => {
                       placeholder="Image URL"
                       className="mr-1 p-1"
                     />
-                    <ErrorMessage name="image" component="div" />
+                    <ErrorMessage
+                      className="error"
+                      name="image"
+                      component="div"
+                    />
                   </div>
                 </div>
 
@@ -147,9 +197,13 @@ const createpost = () => {
                     placeholder="Blog description "
                     rows={3}
                     name="description"
-                    onChange={() => checkExist("description")}
+                    onChange={(e) => checkExist("description", e.target.value)}
                   ></textarea>
-                  {displaydescription ? `Required` : ""}
+                  {displaydescription ? (
+                    <div className="error">Required</div>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div className="input-fields w-full">
                   <label className="font-bold mt-1">Content</label>
@@ -157,9 +211,13 @@ const createpost = () => {
                     className="box-border p-1"
                     placeholder="Blog content "
                     rows={5}
-                    onChange={() => checkExist("content")}
+                    onChange={(e) => checkExist("content", e.target.value)}
                   ></textarea>
-                  {displaycontent ? "Required" : ""}
+                  {displaycontent ? (
+                    <div className="error">Requiredddd</div>
+                  ) : (
+                    ""
+                  )}
                 </div>
 
                 <button
