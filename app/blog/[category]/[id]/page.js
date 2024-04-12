@@ -15,6 +15,7 @@ function formatTimestamp(timestamp) {
 }
 
 export default function Blog({ params }) {
+  
   const { category, id } = params;
   const {
     title,
@@ -25,6 +26,7 @@ export default function Blog({ params }) {
     lastUpdatedAt,
   } = blogs.find((blog) => blog.id === parseInt(id));
   return (
+    
     <div className="full-page mt-4 mb-4 max-w-6xl mx-auto px-8 py-6 bg-white shadow-lg rounded-lg overflow-hidden">
       <div className="mr-5 ml-5 mb-5 md:flex">
         <div className="md:flex-shrink-0">
