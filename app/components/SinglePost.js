@@ -28,7 +28,7 @@ function SinglePost({ post }) {
                 </div>
                 <div className="w-full flex justify-end">
                     <p className="text-red-500 mb-3 opacity-75 hover:opacity-100 cursor-pointer flex justify-end w-fit"
-                        onClick={() => router.push(`/blog/${post.category}/${post.id}`)}
+                        onClick={() => router.push(`/blog/${post.category.toLowerCase()}/${post.id}`)}
                     >Read More</p>
                 </div>
             </div>
