@@ -10,6 +10,7 @@ function getDate() {
   return `${year}-${month}-${date}`;
 }
 var id = 30;
+var arrayToLocal = [];
 const createpost = () => {
   class createdPost {
     constructor(
@@ -32,7 +33,7 @@ const createpost = () => {
         (this.puplishedAt = puplishedAt);
     }
     keywordsSlicer(str) {
-      var str = str.split(",");
+      var str = str.split(", ");
 
       this.keywords = str;
       console.log(this.keywords);
@@ -60,8 +61,8 @@ const createpost = () => {
     }
   }
   return (
-    <div className="h-screen bg-slate-300 flex justify-center items-center">
-      <center className="flex flex-col h-full items-center bg-blue-200 justify-center w-2/4 rounded-3xl">
+    <div className="h-screen bg-slate-100 flex justify-center items-center">
+      <center className="flex flex-col h-full items-center justify-center w-2/4 rounded-3xl">
         <h1 className="p-6 font-bold font-mono text-2xl text-slate-900">
           Create New Post
         </h1>
@@ -118,17 +119,20 @@ const createpost = () => {
             );
             // console.log(keywords);
             createdNewPost.keywordsSlicer(values.keywords);
-            localStorage.setItem("newPost", JSON.stringify(createdNewPost));
+            arrayToLocal.push(createdNewPost);
+            localStorage.setItem("newPost", JSON.stringify(arrayToLocal));
             // console.log(localStorage.getItem("newPost"));
           }}
         >
           {({ isSubmitting }) => (
             <div className="w-full h-3/4 flex justify-center items-center">
               {/* {console.log(getDate())} */}
-              <Form className="flex flex-col w-3/4 h-full bg-teal-400 items-center justify-center p-4 rounded-3xl">
+              <Form className="flex flex-col w-3/4 h-full bg-indigo-700 items-center justify-center p-4 rounded-3xl">
                 <div className="flex w-full justify-between">
                   <div className="input-fields w-1/2 m-0">
-                    <label className="self-baseline font-bold">Title</label>
+                    <label className="self-baseline font-bold text-white">
+                      Title
+                    </label>
                     <Field
                       type="text"
                       name="blogName"
@@ -143,7 +147,7 @@ const createpost = () => {
                   </div>
 
                   <div className="input-fields w-1/2 m-0">
-                    <label className="self-baseline font-bold">
+                    <label className="self-baseline font-bold  text-white">
                       Keywords{" "}
                       <span className="font-light text-gray-50 text-xs">
                         Comma Seperated
@@ -163,16 +167,29 @@ const createpost = () => {
                   </div>
                 </div>
                 <div className="flex w-full justify-between">
-                  <div className="input-fields w-1/2 m-0">
-                    <label className="self-baseline font-bold  mt-1">
+                  <div className="input-fields w-1/2 m-0 ">
+                    <label className="self-baseline text-white font-bold  mt-1">
                       Category
                     </label>
                     <Field
-                      type="text"
+                      as="select"
                       name="category"
                       placeholder="Blog brief"
-                      className="mr-1 p-1"
-                    />
+                      className="mr-1 p-1 text-lg"
+                    >
+                      <option>Cookies</option>
+                      <option>Pies</option>
+                      <option>Desserts</option>
+                      <option>Bread</option>
+                      <option>Cakes</option>
+                      <option>Breakfast</option>
+                      <option>Pasta</option>
+                      <option>Sandwiches</option>
+                      <option>Soups & Stews</option>
+                      <option>Salads</option>
+                      <option>Pizza</option>
+                      <option>Grilling</option>
+                    </Field>
                     <ErrorMessage
                       className="error"
                       name="category"
@@ -181,7 +198,7 @@ const createpost = () => {
                   </div>
 
                   <div className="input-fields w-1/2 m-0">
-                    <label className="self-baseline font-bold  mt-1">
+                    <label className="self-baseline text-white font-bold  mt-1">
                       Image URL
                     </label>
                     <Field
@@ -199,7 +216,9 @@ const createpost = () => {
                 </div>
 
                 <div className="input-fields w-full">
-                  <label className="font-bold mt-1">Description</label>
+                  <label className="font-bold text-white mt-1">
+                    Description
+                  </label>
                   <textarea
                     className="box-border p-1"
                     placeholder="Blog description "
@@ -214,7 +233,7 @@ const createpost = () => {
                   )}
                 </div>
                 <div className="input-fields w-full">
-                  <label className="font-bold mt-1">Content</label>
+                  <label className="font-bold text-white mt-1">Content</label>
                   <textarea
                     className="box-border p-1"
                     placeholder="Blog content "
