@@ -3,8 +3,31 @@ import formatDate from "../components/FormatDate";
 import Image from "next/image";
 
 export default function Blog({ category, id }) {
+  let blogFound = null;
+  let blogLocal = null;
+  try {
+    const localData = JSON.parse(localStorage.getItem("newPost"));
+    if (Array.isArray(localData)) {
+      blogLocal = localData.find((blog) => blog.id === id);
+    }
+  } catch (error) {
+    console.error("Error retrieving data from local storage:", error);
+  }
+
+  const blogFile = blogs.find((blog) => blog.id === id);
+
+  if (blogFile) {
+    blogFound = blogFile;
+  }
+  if (blogLocal) {
+    blogFound = blogLocal;
+  }
+
+  if (!blogFound) {
+    return <div>Error: Blog not found</div>;
+  }
   const { title, content, description, image, pubDate, updatedDate } =
-    blogs.find((blog) => blog.id === id);
+    blogFound;
   return (
     <div className="full-page mt-4 mb-4 max-w-6xl mx-auto px-8 py-6 bg-white shadow-lg rounded-lg overflow-hidden">
       <div className="mr-5 ml-5 mb-5 md:flex">
