@@ -152,7 +152,7 @@ const createpost = () => {
                   <label className="self-baseline font-bold  text-white">
                     Keywords{" "}
                     <span className="font-light text-gray-50 text-xs">
-                      Comma Seperated
+                      Comma-space Seperation
                     </span>
                   </label>
                   <Field
