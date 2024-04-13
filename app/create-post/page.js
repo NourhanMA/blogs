@@ -20,8 +20,9 @@ const createpost = () => {
       keywords,
       description,
       content,
-      updatedAt,
-      puplishedAt
+      image,
+      updatedDate,
+      pubDate
     ) {
       (this.id = id),
         (this.title = title),
@@ -29,8 +30,9 @@ const createpost = () => {
         (this.keywords = keywords),
         (this.description = description),
         (this.content = content),
-        (this.updatedAt = updatedAt),
-        (this.puplishedAt = puplishedAt);
+        (this.image = image),
+        (this.updatedDate = updatedDate),
+        (this.pubDate = pubDate);
     }
     keywordsSlicer(str) {
       var str = str.split(", ");
@@ -114,6 +116,7 @@ const createpost = () => {
               values.keywords,
               descriptionText,
               contentText,
+              values.image,
               getDate(),
               getDate()
             );
