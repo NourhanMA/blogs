@@ -91,7 +91,7 @@ const createpost = () => {
               errors.image = "Required";
             }
 
-            if (!values.category) {
+            if (!values.category || values.category == "...") {
               errors.category = "Required";
             }
             if (!iscontent) {
@@ -180,6 +180,7 @@ const createpost = () => {
                       placeholder="Blog brief"
                       className="mr-1 p-1 text-lg"
                     >
+                      <option>...</option>
                       <option>Cookies</option>
                       <option>Pies</option>
                       <option>Desserts</option>
