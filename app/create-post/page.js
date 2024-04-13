@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-
+import NavbarOtherpages from "../components/NavbarOtherpages";
 function getDate() {
   const today = new Date();
   const month = today.getMonth() + 1;
@@ -63,8 +63,12 @@ const createpost = () => {
     }
   }
   return (
+    <div>
+      <NavbarOtherpages/>
     <div className="h-screen bg-slate-100 flex justify-center items-center">
+      
       <center className="flex flex-col h-full items-center justify-center w-2/4 rounded-3xl">
+  
         <h1 className="p-6 font-bold font-mono text-2xl text-slate-900">
           Create New Post
         </h1>
@@ -262,6 +266,7 @@ const createpost = () => {
           )}
         </Formik>
       </center>
+    </div>
     </div>
   );
 };

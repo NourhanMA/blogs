@@ -1,5 +1,4 @@
 
-
 'use client'
 import axios from 'axios'
 import SinglePost from './SinglePost'
@@ -7,66 +6,46 @@ import { useEffect, useState } from "react";
 import Navbar from './Navbar';
 import useGetPosts from "../hooks/useGetPosts"
 function HomePage() {
-
-  const [allPosts, setAllPosts] = useState([])
+  const [allPosts, setAllPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const data = useGetPosts()
+    const data = useGetPosts();
     setAllPosts(data);
     setFilteredPosts(data);
     const uniqueCategories = [...new Set(data.map(post => post.category))];
     setCategories(uniqueCategories);
-  }, [])
+  }, []);
 
+  const filterPosts = () => {
+    let filtered = allPosts;
+    if (searchQuery.trim() !== '') {
+      filtered = filtered.filter(post => post.title.toLowerCase().includes(searchQuery.toLowerCase()));
+    }
+    if (selectedCategory !== 'All') {
+      filtered = filtered.filter(post => post.category === selectedCategory);
+    }
+    setFilteredPosts(filtered);
+  };
 
-
+  useEffect(() => {
+    filterPosts();
+  }, [searchQuery, selectedCategory, allPosts]);
 
   const handleSearch = (searchQuery) => {
     setSearchQuery(searchQuery);
-    if (searchQuery.trim() === '') {
-      setFilteredPosts(allPosts);
-      handleCategory('All');
-    } else {
-      const filtered = allPosts.filter(
-        (post) =>
-          post.title.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setFilteredPosts(filtered);
-    }
   };
 
   const handleCategory = (category) => {
-
     setSelectedCategory(category);
-    if (searchQuery.trim() === '') {
-      if (category === 'All') {
-        setFilteredPosts(allPosts);
-      } else {
-        const filtered = allPosts.filter((post) => post.category === category);
-        setFilteredPosts(filtered);
-      }
-    } else {
-
-      const filtered = allPosts.filter(
-        (post) =>
-          post.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
-          (category === 'All' || post.category === category)
-      );
-      setFilteredPosts(filtered);
-    }
-  }
-
+  };
 
   if (!allPosts) {
-    return (
-      <p className="font-black text-black">Loadin...</p>
-    )
+    return <p className="font-black text-black">Loading...</p>;
   }
-
 
   return (
     <>
@@ -79,8 +58,7 @@ function HomePage() {
         ))}
       </div>
     </>
-  )
+  );
 }
 
 export default HomePage;
-

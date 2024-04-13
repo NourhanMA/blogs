@@ -1,7 +1,6 @@
-
 'use client'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const Navbar = ({ categories, onSearch, onCategory }) => {
     const router = useRouter();
@@ -19,6 +18,10 @@ const Navbar = ({ categories, onSearch, onCategory }) => {
       onCategory(category);
       setSearchQuery(''); // Clear the search query when a category is selected
       setIsDropdownOpen(false); // Close the dropdown after selecting a category
+    };
+  
+    const handleCreatePost = () => {
+      router.push('/create-post');
     };
   
     return (
@@ -66,6 +69,14 @@ const Navbar = ({ categories, onSearch, onCategory }) => {
                 </ul>
               )}
             </li>
+            <li>
+            <button
+            onClick={handleCreatePost}
+            className=" px-4 py-1 text-sm font-medium text-white bg-blue-700 rounded-md  dark:hover:bg-blue-600 "
+          >
+            Create Post
+          </button>
+            </li>
           </ul>
           <div className="relative hidden md:block">
             <input
@@ -77,9 +88,10 @@ const Navbar = ({ categories, onSearch, onCategory }) => {
               placeholder="Search..."
             />
           </div>
+      
         </div>
       </nav>
     );
-  };
-  
-  export default Navbar;
+};
+
+export default Navbar;
