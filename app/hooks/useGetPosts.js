@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
-
+import data from "../../public/data.json";
 
 export const useGetPosts = () => {
-    const [allPosts, setAllPosts] = useState([])
-    useEffect(() => {
-        axios.get("data.json").then(({ data }) => {
-            setAllPosts(data)
+    if ('newPost' in localStorage) {
+        const newPosts = JSON.parse(localStorage.getItem('newPost'))
+        newPosts.forEach(el => {
+            data.push(el)
         });
-        console.log(allPosts)
-    }, [])
-
-    return allPosts;
+    }
+    return data;
 }
 
+export default useGetPosts

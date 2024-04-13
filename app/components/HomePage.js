@@ -14,14 +14,13 @@ function HomePage() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    axios.get("data.json").then(({ data }) => {
-      setAllPosts(data);
-      setFilteredPosts(data);
-      const uniqueCategories = [...new Set(data.map(post => post.category))];
-      setCategories(uniqueCategories);
-
-    });
+    const data = useGetPosts()
+    setAllPosts(data);
+    setFilteredPosts(data);
+    const uniqueCategories = [...new Set(data.map(post => post.category))];
+    setCategories(uniqueCategories);
   }, [])
+
 
 
 
@@ -73,7 +72,7 @@ function HomePage() {
       <div className='basis-full'>
         <Navbar categories={categories} onSearch={handleSearch} onCategory={handleCategory} />
       </div>
-      <div className='flex flex-wrap w-3/4 justify-center items-start '>
+      <div className='flex flex-wrap w-full md:w-2/3 justify-start items-start min-h-screen'>
         {filteredPosts.map((post) => (
           <SinglePost key={post.id} post={post} />
         ))}
