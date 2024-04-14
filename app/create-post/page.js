@@ -147,7 +147,7 @@ const createpost = () => {
                       type="text"
                       name="blogName"
                       placeholder="Blog Name"
-                      className="mr-1 p-1 rounded-md"
+                      className="mr-1 p-1 rounded-md text-black"
                     />
                     <ErrorMessage
                       className="error"
@@ -167,7 +167,7 @@ const createpost = () => {
                       type="text"
                       name="keywords"
                       placeholder="Blog keywords"
-                      className="mr-1 p-1 rounded-md"
+                      className="mr-1 p-1 rounded-md text-black"
                     />
                     <ErrorMessage
                       className="error"
@@ -184,7 +184,7 @@ const createpost = () => {
                       as="select"
                       name="category"
                       placeholder="Blog brief"
-                      className="mr-1 p-1 text-lg rounded-md"
+                      className="mr-1 p-1 text-lg rounded-md text-black"
                     >
                       <option>...</option>
                       <option>Cookies</option>
@@ -215,7 +215,7 @@ const createpost = () => {
                       type="text"
                       name="image"
                       placeholder="Image URL"
-                      className="mr-1 p-1 rounded-md"
+                      className="mr-1 p-1 rounded-md text-black"
                     />
                     <ErrorMessage
                       className="error"
@@ -229,7 +229,7 @@ const createpost = () => {
                       Description
                     </label>
                     <textarea
-                      className="box-border p-1 rounded-md"
+                      className="box-border p-1 rounded-md text-black"
                       placeholder="Blog description "
                       rows={3}
                       name="description"
@@ -248,7 +248,7 @@ const createpost = () => {
                       Content
                     </label>
                     <textarea
-                      className="box-border p-1 rounded-md"
+                      className="box-border p-1 rounded-md text-black"
                       placeholder="Blog content "
                       rows={5}
                       onChange={(e) => checkExist("content", e.target.value)}
