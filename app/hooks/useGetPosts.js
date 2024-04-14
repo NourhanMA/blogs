@@ -1,6 +1,3 @@
-
-import { useEffect, useState } from "react";
-
 import data from "../../public/data.json";
 
 export const useGetPosts = () => {
