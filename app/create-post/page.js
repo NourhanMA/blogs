@@ -71,7 +71,7 @@ const createpost = () => {
   return (
     <div className="h-screen">
       <NavbarOtherpages />
-      <div className=" bg-slate-100 flex justify-center items-center">
+      <div className=" bg-slate-100 flex justify-center items-center h-[calc(92.5vh)]">
         <center className="flex flex-col h-full items-center justify-center w-2/4 rounded-3xl">
           <h1 className="p-6 font-semibold font-sans text-2xl text-slate-900">
             Create New Blog
