@@ -11,13 +11,13 @@ const Navbar = ({ categories, onSearch, onCategory }) => {
       const query = e.target.value;
       setSearchQuery(query);
       onSearch(query);
-      onCategory('All'); // Reset the category to 'All' when searching
+      onCategory('All'); 
     };
   
     const handleCategoryClick = (category) => {
       onCategory(category);
-      setSearchQuery(''); // Clear the search query when a category is selected
-      setIsDropdownOpen(false); // Close the dropdown after selecting a category
+      setSearchQuery(''); 
+      setIsDropdownOpen(false); 
     };
   
     const handleCreatePost = () => {
@@ -38,7 +38,7 @@ const Navbar = ({ categories, onSearch, onCategory }) => {
                 href="#"
                 onClick={() => {
                   router.push(`/`);
-                  handleCategoryClick('All'); // Reset the category to 'All' when Home is clicked
+                  handleCategoryClick('All'); 
                 }}
                 className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                 aria-current="page"

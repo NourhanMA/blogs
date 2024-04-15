@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation';
 
-const NavbarOtherpages = ({ categories, onSearch, onCategory }) => {
+const NavbarOtherpages = ({ }) => {
     const router = useRouter();
 
     const handleCreatePost = () => {
@@ -9,7 +9,7 @@ const NavbarOtherpages = ({ categories, onSearch, onCategory }) => {
     };
   
     return (
-      <nav className="w-screen bg-white border-gray-200 dark:bg-gray-900">
+      <nav className=" bg-white border-gray-200 dark:bg-gray-900">
         <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
           <a className="flex items-center space-x-3 rtl:space-x-reverse">
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
